@@ -1,28 +1,36 @@
 /**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
+ * The "What the Fanta" look: a light lavender purple with lighter lavender cards.
+ * The app always uses it (app.json: userInterfaceStyle "dark"), so light and dark share
+ * the same colours. Every screen reads its colours from here: change a value and the whole app follows.
  */
 
 import '@/global.css';
 
 import { Platform } from 'react-native';
 
-export const Colors = {
-  light: {
-    text: '#000000',
-    background: '#ffffff',
-    backgroundElement: '#F0F0F3',
-    backgroundSelected: '#E0E1E6',
-    textSecondary: '#60646C',
-  },
-  dark: {
-    text: '#ffffff',
-    background: '#000000',
-    backgroundElement: '#212225',
-    backgroundSelected: '#2E3135',
-    textSecondary: '#B0B4BA',
-  },
+const WhatTheFanta = {
+  text: '#FFFFFF',
+  textSecondary: '#F3ECFF', // very light lilac
+  background: '#784cc5', // lavender purple: every screen, header and the tab bar
+  backgroundElement: '#A580E4', // lighter lavender: cards, tiles, search bar
+  backgroundSelected: '#B999EC', // lines, bell circles, the ? shapes behind the logo
+  brand: '#1D3F9B', // Fanta logo blue
+  heading: '#FFFFFF', // white: section titles (yellow is hard to read on light purple)
+  primary: '#FF8200', // Fanta orange: main buttons, the selected tab
+  onPrimary: '#2A0A4A', // dark text/icons on orange: white on orange is hard to read
+  ink: '#2A0A4A', // dark purple for text on bright colours (orange buttons, the yellow avatar circle)
+  accent: '#5B2A9E', // darker purple: "yours" (your review, ✓ when you drank it) stands out
+  highlight: '#FF8200', // yellow: stars and your avatar circle (they get a dark edge to stand out)
+  danger: '#FFE0E0', // very light red, readable on purple
 } as const;
+
+export const Colors = {
+  light: WhatTheFanta,
+  dark: WhatTheFanta,
+} as const;
+
+// The chunky Fanta-style font, loaded in the root layout with useFonts().
+export const DisplayFont = 'LilitaOne_400Regular';
 
 export type ThemeColor = keyof typeof Colors.light & keyof typeof Colors.dark;
 
